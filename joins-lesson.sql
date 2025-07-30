@@ -9,14 +9,14 @@ FROM
     DimHospital
 
 SELECT
-    ps.Hospital
-    ,h.Hospital
+    h.Hospital AS Hospitalfromlookup
+    ,ps.Hospital AS Hospitalofpatient
     ,h.HospitalType
     ,ps.PatientId
     ,ps.AdmittedDate
     ,ps.DischargeDate
 
 FROM
-    PatientStay ps LEFT JOIN DimHospitalBad h ON ps.Hospital = h.Hospital
+    DimHospitalBad h FULL OUTER JOIN PatientStay ps ON ps.Hospital = h.Hospital
 
 
